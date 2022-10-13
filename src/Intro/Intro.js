@@ -1,4 +1,4 @@
-import Typical from 'react-typical';
+import IntroStatement from '../introStatement/IntroStatement';
 
 
 /**
@@ -12,37 +12,15 @@ import Typical from 'react-typical';
  * App => Intro => about or resume or portfolio
  */
 function Intro({pageView,name,titles}) {
-  console.log(titles)
 
-  /**
-   * params:
-   *    - titles: ["string","string"...]
-   *    - timeLength: integer representing timelength of each title shown
-   *
-   * returns:
-   *    - ["title", 2000, "title2", 2000...]
-   */
-  function buildSteps(titles,timeLength=2000){
-    let stepList = [];
-     titles.forEach(x => {
-      stepList.push(x);
-      stepList.push(timeLength);
-    });
-    console.log(stepList);
-    return stepList;
-  }
+
 
 return (
-  <div class="title-box" >
-    <h1>Hello,</h1>
-    <h2>I'm {name}</h2>
-    <p>I'm a{' '}
-      <Typical
-        loop={Infinity}
-        wrapper='b'
-        steps={buildSteps(titles)}
-      />
-    </p>
+  <div class="intro intro-main" >
+
+   <IntroStatement name={name}
+                   titles = {titles}/>
+
   </div>
 );
 }
