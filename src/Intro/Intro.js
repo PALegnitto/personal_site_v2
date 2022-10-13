@@ -13,6 +13,15 @@ import Typical from 'react-typical';
  */
 function Intro({pageView,name,titles}) {
   console.log(titles)
+
+  /**
+   * params:
+   *    - titles: ["string","string"...]
+   *    - timeLength: integer representing timelength of each title shown
+   *
+   * returns:
+   *    - ["title", 2000, "title2", 2000...]
+   */
   function buildSteps(titles,timeLength=2000){
     let stepList = [];
      titles.forEach(x => {
