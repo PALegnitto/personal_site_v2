@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import PageContainer from './pageContainer/PageContainer';
 import './App.css';
+import { useState, useEffect } from "react";
+import Intro from './Intro/Intro';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [pageView, setPageView] = useState('intro');
+
+  const titles = [
+    'software engineer',
+    'CX enthusiast',
+    'husband',
+    'father',
+    'life long student'
+]
+
+
+
+
+  if (pageView === 'intro'){
+
+    return  <Intro pageView={pageView}
+                   name="Phill Legnitto"
+                   titles={titles}
+              />
+  } else {
+    return <PageContainer pageView={pageView} />
+  }
 }
 
 export default App;
