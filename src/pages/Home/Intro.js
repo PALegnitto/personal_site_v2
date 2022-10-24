@@ -1,4 +1,4 @@
-import IntroStatement from '../introStatement/IntroStatement';
+import IntroStatement from './IntroStatement';
 
 
 /**

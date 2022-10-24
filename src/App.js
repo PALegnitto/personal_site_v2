@@ -1,7 +1,8 @@
-import PageContainer from './pageContainer/PageContainer';
+import PageContainer from './components/PageContainer';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import './App.css';
 import { useState, useEffect } from "react";
-import Intro from './Intro/Intro';
 
 function App() {
 
@@ -13,20 +14,18 @@ function App() {
     'husband',
     'father',
     'life long student'
-]
+  ];
 
 
+    return (
+      
+  <div>
+    <NavBar/>
+    <PageContainer pageView={pageView} titles={titles}/>
+    <Footer/>
+  </div>
 
-
-  if (pageView === 'intro'){
-
-    return  <Intro pageView={pageView}
-                   name="Phill Legnitto"
-                   titles={titles}
-              />
-  } else {
-    return <PageContainer pageView={pageView} />
+    );
   }
-}
 
 export default App;
