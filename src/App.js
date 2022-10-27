@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 function App() {
 
-  const [pageView, setPageView] = useState('intro');
+  const [pageView, setPageView] = useState('home');
 
   const titles = [
     'software engineer',
@@ -16,12 +16,17 @@ function App() {
     'life long student'
   ];
 
+  const name = 'Phill Legnitto';
+
 
     return (
-      
+
   <div>
-    <NavBar/>
-    <PageContainer pageView={pageView} titles={titles}/>
+    <NavBar name={name}/>
+    <PageContainer
+      pageView={pageView}
+      titles={titles}
+      name={name}/>
     <Footer/>
   </div>
 

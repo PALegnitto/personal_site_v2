@@ -18,8 +18,9 @@ function Intro({name,titles}) {
 return (
   <div class="intro intro-main" >
 
-   <IntroStatement name={name}
-                   titles = {titles}/>
+   <IntroStatement
+    name={name}
+    titles = {titles}/>
 
   </div>
 );
