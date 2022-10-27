@@ -6,6 +6,7 @@ function PageContainer(pageView, titles){
 
     return (
 
+
     <Intro pageView={pageView}
       name="Phill Legnitto"
       titles={titles}/>

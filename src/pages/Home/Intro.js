@@ -11,7 +11,7 @@ import IntroStatement from './IntroStatement';
  *
  * App => Intro => about or resume or portfolio
  */
-function Intro({pageView,name,titles}) {
+function Intro({name,titles}) {
 
 
 
