@@ -1,25 +1,23 @@
+import React from 'react';
 import IntroStatement from './IntroStatement';
 
 
 /**
- * Intro
  *
- * props:
- *  - pageView (type: string, options "intro", "about", "resume", "portfolio")
- *  - name (type: string)
- *  - titles (type: list of strings)
- *
- * App => Intro => about or resume or portfolio
+ * @param {string} name
+ * @param {string[]} titles
+ * @returns {React.ReactElement} IntroStatement
  */
-function Intro({pageView,name,titles}) {
+function Intro({name,titles}) {
 
 
 
 return (
   <div class="intro intro-main" >
 
-   <IntroStatement name={name}
-                   titles = {titles}/>
+   <IntroStatement
+    name={name}
+    titles = {titles}/>
 
   </div>
 );

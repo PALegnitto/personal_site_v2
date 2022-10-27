@@ -1,31 +1,31 @@
 import Typical from 'react-typical';
 
 
+
 /**
- * IntroStatement
+ * @param {{
+ *  pageView: string,
+ *  name: string,
+ *  titles: string[]
+ * }} props
  *
- * props:
- *  - pageView (type: string, options "intro", "about", "resume", "portfolio")
- *  - name (type: string)
- *  - titles (type: list of strings)
+ * @returns
  *
- * App => Intro => IntroStatement
+ * @notes
  */
-function IntroStatement({pageView,name,titles}) {
+function IntroStatement({ pageView, name, titles }) {
+
 
   /**
-   * params:
-   *    - titles: ["string","string"...]
-   *    - timeLength: integer representing timelength of each title shown
-   *
-   * returns:
-   *    - ["title", 2000, "title2", 2000...]
+   * @param {string[]} titles
+   * @param {number} timeLength
+   * @returns {(string|number)[]}
    */
-  function buildSteps(titles,timeLength=2000){
+  function buildSteps(titles, timeLength = 2000) {
 
     let stepList = [];
 
-     titles.forEach(x => {
+    titles.forEach(x => {
       stepList.push(x);
       stepList.push(timeLength);
     });
@@ -34,19 +34,19 @@ function IntroStatement({pageView,name,titles}) {
   }
 
 
-return (
-  <div class="intro intro-statement" >
-    <h1>Hello,</h1>
-    <h2>I'm {name}</h2>
-    <p>I'm a{' '}
-      <Typical
-        loop={Infinity}
-        wrapper='b'
-        steps={buildSteps(titles)}
-      />
-    </p>
-  </div>
-);
+  return (
+    <div class="intro intro-statement" >
+      <h1>Hello,</h1>
+      <h2>I'm {name}</h2>
+      <p>I'm a{' '}
+        <Typical
+          loop={Infinity}
+          wrapper='b'
+          steps={buildSteps(titles)}
+        />
+      </p>
+    </div>
+  );
 }
 
 export default IntroStatement;
