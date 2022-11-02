@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Typical from 'react-typical';
+
 
 
 
@@ -35,7 +35,14 @@ function IntroStatement({ pageView, name, titles }) {
 
     const animate = setInterval(() => {
 
-      if (i === word.length - 1) clearInterval(animate);
+      if (i === word.length - 1) {
+
+        setTimeout( () => {
+          breakdownWord(i);
+        }, 3000);
+        
+        clearInterval(animate);
+      };
 
       setText(prevText => {
 
@@ -45,7 +52,24 @@ function IntroStatement({ pageView, name, titles }) {
         return phrase;
       });
 
-    }, 115);
+    }, 100);
+
+  }
+
+  function breakdownWord(interval){
+
+    const animate = setInterval( () => {
+
+      if (interval === 0) clearInterval(animate);
+
+      setText(text => {
+        text = text.slice(0,-1);
+
+        return text;
+      })
+
+    },115);
+
 
   }
 
@@ -58,24 +82,7 @@ function IntroStatement({ pageView, name, titles }) {
         return prevCursor === "" ? "|" : "";
       });
 
-    }, 475);
-  }
-
-  /**
-   * @param {string[]} titles
-   * @param {number} timeLength
-   * @returns {(string|number)[]}
-   */
-  function buildSteps(titles, timeLength = 2000) {
-
-    let stepList = [];
-
-    titles.forEach(x => {
-      stepList.push(x);
-      stepList.push(timeLength);
-    });
-
-    return stepList;
+    }, 500);
   }
 
 
@@ -85,8 +92,8 @@ function IntroStatement({ pageView, name, titles }) {
       <h2>I'm {name}</h2>
       <p style={{ display: 'flex' }}>
         I'm a{' '} {text}
-        <div>{
-          cursor}
+        <div>
+          {cursor}
         </div>
       </p>
     </div>
