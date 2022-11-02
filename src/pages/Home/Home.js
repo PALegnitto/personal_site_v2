@@ -12,9 +12,9 @@ function Home({name, titles}){
       titles={titles}/>
 
     <div>
-      <img src="../assets/profile_black_and_white.png" alt="Phill"></img>
+      {/* <img src={require ("../../assets/profile_black_and_white.png")} alt="Phill"></img> */}
     </div>
-    
+
   </div>
   );
 

@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import Typical from 'react-typical';
+
 
 
 
@@ -15,6 +17,49 @@ import Typical from 'react-typical';
  */
 function IntroStatement({ pageView, name, titles }) {
 
+  const [text, setText] = useState("");
+  const [cursor, setCursor] = useState("|");
+
+  useEffect(() => {
+    animateText(titles[0]);
+
+  }, []);
+
+  useEffect(() => {
+    flashCursor();
+  }, []);
+
+  function animateText(word) {
+
+    let i = 0;
+
+    const animate = setInterval(() => {
+
+      if (i === word.length - 1) clearInterval(animate);
+
+      setText(prevText => {
+
+        const phrase = prevText + word[i];
+        i++;
+
+        return phrase;
+      });
+
+    }, 115);
+
+  }
+
+  function flashCursor() {
+
+    setInterval(() => {
+
+      setCursor(prevCursor => {
+
+        return prevCursor === "" ? "|" : "";
+      });
+
+    }, 475);
+  }
 
   /**
    * @param {string[]} titles
@@ -35,15 +80,14 @@ function IntroStatement({ pageView, name, titles }) {
 
 
   return (
-    <div class="intro intro-statement" >
+    <div className="intro intro-statement" >
       <h1>Hello,</h1>
       <h2>I'm {name}</h2>
-      <p>I'm a{' '}
-        <Typical
-          loop={Infinity}
-          wrapper='b'
-          steps={buildSteps(titles)}
-        />
+      <p style={{ display: 'flex' }}>
+        I'm a{' '} {text}
+        <div>{
+          cursor}
+        </div>
       </p>
     </div>
   );
