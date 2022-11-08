@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
 
-
-
-
 /**
  * @param {{
  *  pageView: string,
@@ -21,7 +18,7 @@ function IntroStatement({ pageView, name, titles }) {
   const [cursor, setCursor] = useState("|");
 
   useEffect(() => {
-    animateText(titles[0]);
+    animationLoop(titles);
 
   }, []);
 
@@ -29,62 +26,64 @@ function IntroStatement({ pageView, name, titles }) {
     flashCursor();
   }, []);
 
-  function animateText(word) {
+  const animateText = word => {
+    return new Promise(resolve => {
+      let i = 0;
 
+      const animate = setInterval(() => {
+        if (i === word.length - 1) {
+
+          setTimeout(async () => {
+            await breakdownWord(word);
+            resolve();
+          }, 3000);
+
+          clearInterval(animate);
+        };
+
+        setText(prevText => {
+          const phrase = prevText + word[i];
+          i++;
+
+          return phrase;
+        });
+      }, 100);
+    });
+  }
+
+  const breakdownWord = word => {
+    return new Promise(resolve => {
+      let i = word.length - 1;
+      const removeLetter = setInterval(() => {
+        if (i === 0) {
+          clearInterval(removeLetter);
+          resolve();
+        }
+
+        setText(text => {
+          text = text.slice(0, -1);
+          return text;
+        });
+        i--;
+      }, 115);
+    });
+  }
+
+   const animationLoop = async wordList => {
     let i = 0;
 
-    const animate = setInterval(() => {
-
-      if (i === word.length - 1) {
-
-        setTimeout( () => {
-          breakdownWord(i);
-        }, 3000);
-        
-        clearInterval(animate);
-      };
-
-      setText(prevText => {
-
-        const phrase = prevText + word[i];
-        i++;
-
-        return phrase;
-      });
-
-    }, 100);
-
+    while (true) {
+      if (i === wordList.length) i = 0;
+      await animateText(wordList[i]);
+      i++;
+    }
   }
 
-  function breakdownWord(interval){
-
-    const animate = setInterval( () => {
-
-      if (interval === 0) clearInterval(animate);
-
-      setText(text => {
-        text = text.slice(0,-1);
-
-        return text;
-      })
-
-    },115);
-
-
-  }
-
-  function flashCursor() {
-
+  const flashCursor = () => {
     setInterval(() => {
-
-      setCursor(prevCursor => {
-
-        return prevCursor === "" ? "|" : "";
-      });
-
+      setCursor(prevCursor => prevCursor === "" ? "|" : "");
     }, 500);
   }
-
 
   return (
     <div className="intro intro-statement" >
