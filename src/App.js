@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 function App() {
 
-  const [pageView, setPageView] = useState('home');
+  const [pageView, setPageView] = useState('Home');
 
   const titles = [
     'software engineer',
@@ -19,11 +19,18 @@ function App() {
 
   const name = 'Phill Legnitto';
 
+  const handleViewChange = (e) => {
+    const page = e.target.innerText;
+    console.log("handleView",page);
+    console.log("evt",e);
+    setPageView(page);
+  }
+
 
     return (
 
   <div>
-    <NavBar pageView={pageView} name={name}/>
+    <NavBar handleViewChange={handleViewChange} name={name}/>
     <PageContainer
       pageView={pageView}
       titles={titles}
