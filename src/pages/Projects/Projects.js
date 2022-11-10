@@ -1,4 +1,10 @@
-function Projects(){
+function Projects({contentList}){
+
+  return (
+    <div>
+      {contentList.map}
+    </div>
+  )
 
 };
 
