@@ -1,11 +1,11 @@
 import Pages from "../pages"
 
 const PageObj = {
-  home: Pages.Home,
-  about: Pages.About,
-  resume: Pages.Resume,
-  projects: Pages.Projects,
-  blog: Pages.Blog
+  Home: Pages.Home,
+  About: Pages.About,
+  Resume: Pages.Resume,
+  Projects: Pages.Projects,
+  Blog: Pages.Blog
 }
 
 function PageContainer(props){

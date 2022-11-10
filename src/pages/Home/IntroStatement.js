@@ -89,12 +89,12 @@ function IntroStatement({ pageView, name, titles }) {
     <div className="intro intro-statement" >
       <h1>Hello,</h1>
       <h2>I'm {name}</h2>
-      <p style={{ display: 'flex' }}>
+      <div style={{ display: 'flex' }}>
         I'm a{' '} {text}
         <div>
           {cursor}
         </div>
-      </p>
+      </div>
     </div>
   );
 }
