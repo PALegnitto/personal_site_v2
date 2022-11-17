@@ -5,40 +5,38 @@ import "bootswatch/dist/darkly/bootstrap.min.css";
 import './App.css';
 import { useState, useEffect } from "react";
 
-function App() {
+const fetchTitles = () => Promise.resolve([
+  'software engineer',
+  'CX enthusiast',
+  'husband',
+  'father',
+  'life long student'
+]);
 
+const name = 'Phill Legnitto';
+
+const App = () => {
   const [pageView, setPageView] = useState('Home');
+  const [titles, setTitles] = useState([]);
 
-  const titles = [
-    'software engineer',
-    'CX enthusiast',
-    'husband',
-    'father',
-    'life long student'
-  ];
+  useEffect(() => {
+    fetchTitles().then(titles => setTitles(titles));
+  }, []);
 
-  const name = 'Phill Legnitto';
-
-  const handleViewChange = (e) => {
-    const page = e.target.innerText;
-    console.log("handleView",page);
-    console.log("evt",e);
+  const handleViewChange = (page) => {
     setPageView(page);
-  }
+  };
 
-
-    return (
-
-  <div>
-    <NavBar handleViewChange={handleViewChange} name={name}/>
-    <PageContainer
-      pageView={pageView}
-      titles={titles}
-      name={name}/>
-    <Footer/>
-  </div>
-
-    );
-  }
+  return (
+    <div>
+      <NavBar handleViewChange={handleViewChange} name={name} />
+      <PageContainer
+        pageView={pageView}
+        titles={titles}
+        name={name} />
+      <Footer />
+    </div>
+  );
+};
 
 export default App;

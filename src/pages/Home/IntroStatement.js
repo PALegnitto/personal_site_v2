@@ -18,9 +18,10 @@ function IntroStatement({ pageView, name, titles }) {
   const [cursor, setCursor] = useState("|");
 
   useEffect(() => {
-    animationLoop(titles);
-
-  }, []);
+    if (titles.length > 0) {
+      animationLoop(titles);
+    }
+  }, [titles]);
 
   useEffect(() => {
     flashCursor();
@@ -49,7 +50,7 @@ function IntroStatement({ pageView, name, titles }) {
         });
       }, 100);
     });
-  }
+  };
 
   const breakdownWord = word => {
     return new Promise(resolve => {
@@ -67,9 +68,9 @@ function IntroStatement({ pageView, name, titles }) {
         i--;
       }, 115);
     });
-  }
+  };
 
-   const animationLoop = async wordList => {
+  const animationLoop = async wordList => {
     let i = 0;
 
     while (true) {
@@ -77,13 +78,13 @@ function IntroStatement({ pageView, name, titles }) {
       await animateText(wordList[i]);
       i++;
     }
-  }
+  };
 
   const flashCursor = () => {
     setInterval(() => {
       setCursor(prevCursor => prevCursor === "" ? "|" : "");
     }, 500);
-  }
+  };
 
   return (
     <div className="intro intro-statement" >
