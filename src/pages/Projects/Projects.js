@@ -1,8 +1,14 @@
 function Projects({contentList}){
 
+  if (contentList) return (
+      <div>
+        {contentList.map}
+      </div>
+    )
+
   return (
     <div>
-      {contentList.map}
+      content coming soon
     </div>
   )
 

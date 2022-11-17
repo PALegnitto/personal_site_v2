@@ -1,12 +1,12 @@
-function ContentCard({content}){
 
-  
+const ContentCard = ({content}) => {
+
+
   return (
-
-    <div>
-      {content}
+    <div className="card">
+      <div className="cardTitle">{content.title}</div>
+      <div className="cardBody">{content.body}</div>
     </div>
-
   )
 };
 
